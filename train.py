@@ -101,6 +101,7 @@ with tf.Graph().as_default():
         for g, v in grads_and_vars:
             if g is not None:
                 grad_hist_summary = tf.summary.histogram("{}/grad/hist".format(v.name), g)
+                #return the fraction of zeros 
                 sparsity_summary = tf.summary.scalar("{}/grad/sparsity".format(v.name), tf.nn.zero_fraction(g))
                 grad_summaries.append(grad_hist_summary)
                 grad_summaries.append(sparsity_summary)
